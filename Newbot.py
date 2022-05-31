@@ -5,8 +5,8 @@ from telegram import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, 
 import json
 import numpy as np
 
-# ADMIN_ID = 00000000
-TOKEN = ""
+ADMIN_ID = 00000000
+TOKEN = "5378086088:AAGhfhEvl_DXgRfWmS9xBMX4WLCeFpDanEs"
 
 with open('sample.json') as json_file:
     data = json.load(json_file)
@@ -42,33 +42,45 @@ def inline_messages(update, context):
     if query.data == 'send_photo':
         query.message.reply_photo(
             photo=f'https://www.google.com/imgres?imgurl=https%3A%2F%2Fblog.bismart.com%2Fhs-fs%2Fhubfs%2Flos-10-mejores-bots-disponibles-en-Internet.jpg%3Fwidth%3D5184%26name%3Dlos-10-mejores-bots-disponibles-en-Internet.jpg&imgrefurl=https%3A%2F%2Fblog.bismart.com%2Fen%2F10-best-bots-internet-now&tbnid=gVyV3Jd8TALO_M&vet=12ahUKEwiBnp6Z24H4AhVPiIsKHYwnBgUQMygTegUIARC_AQ..i&docid=WAEZXTVItK3BuM&w=5184&h=3888&q=bot%20foto&ved=2ahUKEwiBnp6Z24H4AhVPiIsKHYwnBgUQMygTegUIARC_AQ',
-            caption='Kirish Mumkunmas!',
+            caption='Kirish Mumkun emas!\n'
+                    'Rasm yuboring.',
             reply_markup=InlineKeyboardMarkup(buttons)
         )
+
+
+###################################################################################################################################
+
+
 
 def photo_handler(update, context):
     file = update.message.photo[-1].file_id
     obj = context.bot.get_file(file)
     obj.download('image/a.jpg')
 
-#################################################################################
-    uknown_img = face_recognition.load_image_file("image/a.jpg")
-    uknown_encoding = face_recognition.face_encodings(uknown_img)[0]
-    minimum = 0.5
-    result_index = None
-    for i in range(len(known_face_encodings)):
-        face_distances = face_recognition.face_distance([known_face_encodings[i]], uknown_encoding)[0]
-        result = face_recognition.compare_faces([known_face_encodings[i]], uknown_encoding)
-        if result[0] and face_distances < minimum:
-            minimum = face_distances
-            result_index = i
+    try:
+        uknown_img = face_recognition.load_image_file("image/a.jpg")
 
-    if result_index != None:
-        student_data = f"Yo'nalish:{data[result_index]['dir']}\nTalaba:{data[result_index]['name']}"
-    else:
-        student_data = "Bu rasmga malumot yo'q"
+        uknown_encoding = face_recognition.face_encodings(uknown_img)[0]
+        minimum = 0.5
+        result_index = None
+        for i in range(len(known_face_encodings)):
+            face_distances = face_recognition.face_distance([known_face_encodings[i]], uknown_encoding)[0]
+            result = face_recognition.compare_faces([known_face_encodings[i]], uknown_encoding)
+            if result[0] and face_distances < minimum:
+                minimum = face_distances
+                result_index = i
 
-    print(student_data, face_distances)
+
+        if result_index != None:
+            student_data = f"Yo'nalish:{data[result_index]['dir']}\nTalaba:{data[result_index]['name']}"
+        else:
+            student_data = "Bu rasmga malumot yo'q"
+
+    except:
+        student_data ="Xato!!"
+
+
+    print(student_data)
     update.message.reply_text(text=student_data)
 
 
