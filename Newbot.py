@@ -6,7 +6,7 @@ import json
 import numpy as np
 
 ADMIN_ID = 00000000
-TOKEN = "5378086088:AAGhfhEvl_DXgRfWmS9xBMX4WLCeFpDanEs"
+TOKEN = ""
 
 with open('sample.json') as json_file:
     data = json.load(json_file)
