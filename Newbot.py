@@ -5,8 +5,8 @@ from telegram import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, 
 import json
 import numpy as np
 
-ADMIN_ID = 00000000
-TOKEN = ""
+# ADMIN_ID = 00000000
+TOKEN = '5455860872:AAGAPtfX5wxVLE9AA8_8SpnnPCbb44mA3wk'
 
 with open('sample.json') as json_file:
     data = json.load(json_file)
@@ -24,8 +24,8 @@ def start_func(update, context):
     ]
 
     update.message.reply_photo(
-        photo=open('bot/download (1).jfif', 'rb'),
-        caption='Salom!!\nKim xaqida malumot olmoqchisiz?\nRasm kiriting..!',
+        photo=open('bot/bot.jpg', 'rb'),
+        caption='Salom!!\nKim xaqida malumot olmoqchisiz🙂?\nRasm kiriting..!',
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
@@ -42,8 +42,8 @@ def inline_messages(update, context):
     if query.data == 'send_photo':
         query.message.reply_photo(
             photo=f'https://www.google.com/imgres?imgurl=https%3A%2F%2Fblog.bismart.com%2Fhs-fs%2Fhubfs%2Flos-10-mejores-bots-disponibles-en-Internet.jpg%3Fwidth%3D5184%26name%3Dlos-10-mejores-bots-disponibles-en-Internet.jpg&imgrefurl=https%3A%2F%2Fblog.bismart.com%2Fen%2F10-best-bots-internet-now&tbnid=gVyV3Jd8TALO_M&vet=12ahUKEwiBnp6Z24H4AhVPiIsKHYwnBgUQMygTegUIARC_AQ..i&docid=WAEZXTVItK3BuM&w=5184&h=3888&q=bot%20foto&ved=2ahUKEwiBnp6Z24H4AhVPiIsKHYwnBgUQMygTegUIARC_AQ',
-            caption='Kirish Mumkun emas!\n'
-                    'Rasm yuboring.',
+            caption='Kirish Mumkun emas😁!\n'
+                    'Rasm yuboring👤.',
             reply_markup=InlineKeyboardMarkup(buttons)
         )
 
@@ -74,10 +74,10 @@ def photo_handler(update, context):
         if result_index != None:
             student_data = f"Yo'nalish:{data[result_index]['dir']}\nTalaba:{data[result_index]['name']}"
         else:
-            student_data = "Bu rasmga malumot yo'q"
+            student_data = "Bu xaqda malumot yo'q"
 
     except:
-        student_data ="Xato!!"
+        student_data ="Xato rasm joyladingiz(Ogohlantiraman faqat faceni qabul qilamiz)🙂!!"
 
 
     print(student_data)
