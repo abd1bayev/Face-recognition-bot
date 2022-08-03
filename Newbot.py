@@ -4,6 +4,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 from telegram import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton, BotCommand, InputMediaPhoto
 import json
 import numpy as np
+import sqlite3
 
 # ADMIN_ID = 00000000
 TOKEN = '5455860872:AAGAPtfX5wxVLE9AA8_8SpnnPCbb44mA3wk'
@@ -46,7 +47,7 @@ def inline_messages(update, context):
                     'Rasm yuboring👤.',
             reply_markup=InlineKeyboardMarkup(buttons)
         )
-
+6
 
 ###################################################################################################################################
 
@@ -58,7 +59,7 @@ def photo_handler(update, context):
     obj.download('image/a.jpg')
 
     try:
-        uknown_img = face_recognition.load_image_file("image/a.jpg")
+        uknown_img = face_recognition.load_image_file("Image/a.jpg")
 
         uknown_encoding = face_recognition.face_encodings(uknown_img)[0]
         minimum = 0.5
@@ -70,13 +71,24 @@ def photo_handler(update, context):
                 minimum = face_distances
                 result_index = i
 
+                # connection = sqlite3.connect(db_file)
 
         if result_index != None:
-            student_data = f"Yo'nalish:{data[result_index]['dir']}\nTalaba:{data[result_index]['name']}"
+            df = str(data[result_index]['dir'])
+            df1 = str(data[result_index]['name'])
+            # print(df)
+            student_data = f"Yo'nalish:{df}\nTalaba:{df1}"
+            connection = sqlite3.connect('data.db')
+            cursor = connection.cursor()
+            cursor.execute('CREATE TABLE IF NOT EXISTS malumot ("Yonalish", "Ism_familiya")')
+            # cursor.execute(f"""INSERT INTO malumot ('Yonalish', 'Ism_familiya') VALUES ( df, df1)""")
+            connection.commit()
+            connection.close()
         else:
             student_data = "Bu xaqda malumot yo'q"
 
-    except:
+    except Exception as e:
+        print(e)
         student_data ="Xato rasm joyladingiz(Ogohlantiraman faqat faceni qabul qilamiz)🙂!!"
 
 
