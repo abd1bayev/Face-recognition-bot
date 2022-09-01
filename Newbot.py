@@ -7,7 +7,7 @@ import numpy as np
 import sqlite3
 
 # ADMIN_ID = 00000000
-TOKEN = '5455860872:AAGAPtfX5wxVLE9AA8_8SpnnPCbb44mA3wk'
+TOKEN = ''
 
 with open('sample.json') as json_file:
     data = json.load(json_file)
