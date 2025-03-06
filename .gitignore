@@ -1,0 +1,7 @@
+# Virtual environment (venv) fayllarini ignor qilish
+venv/
+venv/*
+
+# Images va boshqa katta fayllarni ignor qilish
+image/
+image/*

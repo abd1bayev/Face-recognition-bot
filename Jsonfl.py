@@ -13,11 +13,11 @@ class NumpyArrayEncoder(JSONEncoder):
 
 
 data = []
-for b in os.listdir('photos'):
+for b in os.listdir('images'):
 
-    for p in os.listdir(f'photos/{b}'):
+    for p in os.listdir(f'images/{b}'):
         name = p.split(".")[0]
-        path = f"photos/{b}/{p}"
+        path = f"images/{b}/{p}"
         pic = face_recognition.load_image_file(path)
         encode_pic = face_recognition.face_encodings(pic)[0]
 
